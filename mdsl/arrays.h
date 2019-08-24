@@ -204,7 +204,7 @@ static inline void array_type_name ## _pop_n(ArrayTypeName *array, size_t n)\
 		array->alloc_len = new_alloc_len;\
 		array->start = 0;\
 	}\
-	return res;\
+	return;\
 }\
 static inline void array_type_name ## _destroy(ArrayTypeName *array)\
 {\

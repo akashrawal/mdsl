@@ -26,7 +26,7 @@
 
 typedef struct 
 {
-	void *value;
+	const void *value;
 	ByteMap next;
 	uint8_t len;
 	uint8_t ekey[];
@@ -154,7 +154,7 @@ static void *collect_node(MdslDict *dict, const void *key, size_t key_len)
 {
 	const uint8_t *ekey = (const uint8_t *) key;
 	const uint8_t *lkey = ekey + key_len;
-	void *res = NULL;
+	const void *res = NULL;
 	DictNodeArray array[1];
 	dict_node_array_init(array);
 
@@ -277,18 +277,18 @@ static void *collect_node(MdslDict *dict, const void *key, size_t key_len)
 
 
 	free(array->data);
-	return res;
+	return (void *) res;
 }
 
 void *mdsl_dict_set
-	(MdslDict *dict, const void *key, size_t key_len, void *value)
+	(MdslDict *dict, const void *key, size_t key_len, const void *value)
 {
 	if (value)
 	{
 		DictNode *node = create_node(dict, key, key_len);
-		void *old_value = node->value;
+		const void *old_value = node->value;
 		node->value = value;
-		return old_value;
+		return (void *) old_value;
 	}
 	else
 	{
@@ -322,7 +322,7 @@ void *mdsl_dict_get
 
 		if (remains == run_len)
 		{
-			return iter->value;
+			return (void *) iter->value;
 		}
 		else
 		{
@@ -375,6 +375,19 @@ MdslDict *mdsl_dict_new()
     dict->root.len = 0;
 
 	return dict;
+}
+
+//Convenience functions
+void *mdsl_dict_set_str
+	(MdslDict *dict, const char *str, const void *value)
+{
+	return mdsl_dict_set(dict, str, strlen(str), value);
+}
+
+void *mdsl_dict_get_str
+	(MdslDict *dict, const char *str)
+{
+	return mdsl_dict_get(dict, str, strlen(str));
 }
 
 //Debugging functions

@@ -21,7 +21,7 @@
 typedef struct _MdslDict MdslDict;
 
 void *mdsl_dict_set
-	(MdslDict *dict, const void *key, size_t key_len, void *value);
+	(MdslDict *dict, const void *key, size_t key_len, const void *value);
 
 void *mdsl_dict_get
 	(MdslDict *dict, const void *key, size_t key_len);
@@ -29,6 +29,12 @@ void *mdsl_dict_get
 MdslDict *mdsl_dict_new();
 
 mdsl_rc_declare(MdslDict, mdsl_dict);
+
+void *mdsl_dict_set_str
+	(MdslDict *dict, const char *str, const void *value);
+
+void *mdsl_dict_get_str
+	(MdslDict *dict, const char *str);
 
 void mdsl_dict_dump(MdslDict *dict);
 void mdsl_dict_fdump(MdslDict *dict, FILE *stream);
