@@ -1,7 +1,7 @@
 /* private.h
  * Library-private code
  * 
- * Copyright 2015-2019 Akash Rawal
+ * Copyright 2015-2020 Akash Rawal
  * This file is part of Modular Middleware.
  * 
  * Modular Middleware is free software: you can redistribute it and/or modify
@@ -589,4 +589,3 @@ static int byte_map_get_tuples(ByteMap *m, uint8_t *keys, void **values)
 		return sized_map_get_tuples(asize, ds, keys, values);
 	}
 }
-
