@@ -7,12 +7,14 @@ mdsl_c = \
 	private.h \
 	utils.c \
 	arrays.c \
-	dict.c
+	dict.c \
+	event.c
 
 mdsl_h = mdsl.h incl.h \
 	utils.h \
 	arrays.h \
-	dict.h
+	dict.h \
+	event.h
      
 libmdsl_la_SOURCES = $(mdsl_c) $(mdsl_h)       
 libmdsl_la_CFLAGS = -Wall -I$(top_builddir) -I$(top_srcdir)

@@ -12,7 +12,8 @@ EXTRA_DIST = logcc.sh.in
 check_PROGRAMS = \
 	 arrays \
 	 private \
-	 dict
+	 dict \
+	 event
 
 TESTS = $(check_PROGRAMS)
 LOG_COMPILER = sh $(builddir)/logcc.sh
